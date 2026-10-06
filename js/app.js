@@ -103,7 +103,8 @@
     if (!horas) { fin.setHours(23, 59, 59); return fin; }
     var pm = /p\.?\s*m/i.test(r.time);
     var hm = horas[horas.length - 1].split(':');
-    var h = parseInt(hm[0], 10) % 12 + (pm ? 12 : 0);
+    var h = parseInt(hm[0], 10);
+    if (h !== 12 && pm) h += 12;
     fin.setHours(h + (horas.length === 1 ? 2 : 0), parseInt(hm[1], 10), 0);
     return fin;
   }

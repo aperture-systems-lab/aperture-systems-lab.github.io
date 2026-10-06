@@ -151,7 +151,7 @@ PROYECTOS = [
             "Dashboard operativo y mapa 3D de Medellín para ver dónde donar.",
         ],
         "tags": ["Python", "FastAPI", "XGBoost", "Agentes de IA", "Data Science", "Machine Learning"],
-        "autores": ["Jerónimo Hoyos", "Daniel Arango", "Jose Miguel García", "Valentina Muñoz"],
+        "autores": ["Jerónimo Hoyos Botero", "Daniel Arango", "Jose Miguel García", "Valentina Muñoz"],
         "video": "7mOG2cgMJ0c",
         "enlaces": [
             ("ver el despliegue", "https://main.jero98772.page/sanghelios/",             True),
@@ -176,20 +176,20 @@ REUNIONES = {
                    "Juan Carlos González",
                    "Qué cambia dentro de una organización cuando la IA deja de ser un "
                    "experimento y pasa a mover el negocio."),
-    "2026-09-14": ("¿Cómo funcionan las redes neuronales?", "Jerónimo Hoyos",
+    "2026-09-14": ("¿Cómo funcionan las redes neuronales?", "Jerónimo Hoyos Botero",
                    "Qué hay debajo de una red neuronal. De la neurona artificial al "
                    "entrenamiento que la hace aprender."),
-    "2026-09-18": ("Introducción a Git y GitHub", "Jerónimo Hoyos",
+    "2026-09-18": ("Introducción a Git y GitHub", "Jerónimo Hoyos Botero",
                    "Control de versiones desde cero. Cómo guardar la historia de tu "
                    "código, volver atrás cuando algo se rompe y trabajar con otros sin "
                    "pisarse el trabajo."),
     "2026-09-21": ("Introducción a la Regresión", "Valentina Muñoz",
                    "El modelo con el que todo empieza. Cómo trazar la relación entre "
                    "variables y usarla para predecir."),
-    "2026-09-28": ("Visión Artificial", "Nicolás Mesa Ortega",
+    "2026-09-28": ("Visión Artificial", "Nicolás Meza Ortega (Asesor Ágora)",
                    "Cómo una máquina aprende a ver. De los píxeles crudos al modelo "
                    "que reconoce lo que hay dentro de una imagen."),
-    "2026-09-25": ("¿Cómo hacer redes neuronales en Python?", "Jerónimo Hoyos",
+    "2026-09-25": ("¿Cómo hacer redes neuronales en Python?", "Jerónimo Hoyos Botero",
                    "De la teoría al código. Construir y entrenar una red neuronal en "
                    "Python con PyTorch."),
     "2026-10-05": ("Introducción a los sistemas RAG", "Esteban López Aguirre",
@@ -207,6 +207,10 @@ REUNIONES = {
                    "Simular miles de veces lo que no se puede calcular. El método que "
                    "nació en el Proyecto Manhattan y hoy le pone número al riesgo en "
                    "los mercados."),
+    "2026-11-18": ("De Prompts a Agentes: Inteligencia Artificial Agéntica con Python",
+                   "Jerónimo Hoyos Botero",
+                   "Del prompt suelto al agente que razona, usa herramientas y actúa. "
+                   "Cómo construir sistemas de IA agéntica en Python."),
     "2026-11-23": ("Muestra de proyectos", "",
                    "Cierre del semestre. Cada equipo presenta lo que construyó: qué "
                    "problema atacó, cómo lo resolvió y qué sigue."),
@@ -228,6 +232,8 @@ DETALLES = {
                    "lugar": "Reunión virtual"},
     "2026-09-28": {"flyer": "assets/flyers/2026-09-28.webp"},
     "2026-10-05": {"flyer": "assets/flyers/2026-10-05.webp"},
+    "2026-11-18": {"hora":  "2:00 – 3:00 p. m.",
+                   "lugar": "Salón por confirmar"},
 }
 
 # Seminario de finanzas cuantitativas: una sesión por semana, los jueves.
@@ -260,9 +266,12 @@ SEMINARIO_FINANZAS = {
 }
 
 for _fecha, (_titulo, _texto) in SEMINARIO_FINANZAS.items():
-    REUNIONES[_fecha] = (_titulo, "", _texto)
+    REUNIONES[_fecha] = (_titulo, "Julián Alexander Muñoz Lozada", _texto)
     DETALLES.setdefault(_fecha, {}).update(
-        {"color": "morado", "etiqueta": "SEMINARIO DE FINANZAS CUANTITATIVAS"})
+        {"color":    "morado",
+         "etiqueta": "SEMINARIO DE FINANZAS CUANTITATIVAS",
+         "hora":     "10:00 a. m. – 12:00 m.",
+         "lugar":    "M6-118"})
 
 FESTIVOS = {
     "2026-10-12": "Día de la Raza",
