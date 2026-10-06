@@ -78,10 +78,12 @@ def build_meeting(fecha, titulo, ponente, texto):
         "title": titulo,
         "speaker": ponente,
         "text": texto,
-        "flyer": d.get("afiche", ""),
+        "flyer": d.get("flyer", ""),
         "time": d.get("hora", ""),
         "place": d.get("lugar", ""),
         "link": d.get("enlace", ""),
+        "accent": hexof(d["color"]) if d.get("color") else "",
+        "tag": d.get("etiqueta", ""),
     }
 
 def build_calendar():

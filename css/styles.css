@@ -34,7 +34,7 @@ html, body, * { scrollbar-width: none; -ms-overflow-style: none; }
 .pjaccess:hover { background:#0c1c26 !important; }
 .pjaccess:hover .pjbtn { transform:translateY(-3px); box-shadow:4px 7px 0 #12525c, 0 0 22px rgba(41,197,214,0.5); }
 .volver:hover { transform:translateY(-3px); border-color:#29c5d6 !important; box-shadow:4px 7px 0 rgba(0,0,0,0.5), 0 0 20px rgba(41,197,214,0.35) !important; }
-.afiche:hover { transform:translateY(-3px); box-shadow:6px 10px 0 rgba(0,0,0,0.5), 0 0 22px var(--glow) !important; }
+.flyer:hover { transform:translateY(-3px); box-shadow:6px 10px 0 rgba(0,0,0,0.5), 0 0 22px var(--glow) !important; }
 .calday:hover { transform:translateY(-2px); box-shadow:0 0 16px rgba(79,214,160,0.5) !important; }
 
 .videoframe { position:relative; width:100%; aspect-ratio:16 / 9; }
@@ -44,6 +44,17 @@ html, body, * { scrollbar-width: none; -ms-overflow-style: none; }
 @media (max-width: 900px) { .pjgrid { grid-template-columns:1fr; gap:22px; } }
 @media (max-width: 620px) { .pjperiodo { display:none; } }
 
+@keyframes proxPulse { 0%,100% { box-shadow:0 0 6px var(--glow); } 50% { box-shadow:0 0 20px var(--glow), 0 0 0 3px var(--glow); } }
+.calprox { animation:proxPulse 1.8s ease-in-out infinite; }
+.listawrap { position:relative; }
+.listawrap::before, .listawrap::after { content:''; position:absolute; left:0; right:10px; height:34px; pointer-events:none; opacity:0; transition:opacity .2s; z-index:1; }
+.listawrap::before { top:2px; background:linear-gradient(#050a0e, transparent); }
+.listawrap::after { bottom:2px; background:linear-gradient(transparent, #050a0e); }
+.listawrap.arriba::before, .listawrap.abajo::after { opacity:1; }
+.listareu { scrollbar-width:thin; scrollbar-color:#1f6f7c #070f18; border-top:2px solid #16404d; border-bottom:2px solid #16404d; }
+.listareu::-webkit-scrollbar { width:8px; }
+.listareu::-webkit-scrollbar-track { background:#070f18; }
+.listareu::-webkit-scrollbar-thumb { background:#1f6f7c; }
 .filareu:hover { transform:translateX(3px); color:#fff !important; }
 .calgrid { display:grid; grid-template-columns:minmax(0,620px) minmax(210px,1fr); gap:26px; align-items:start; }
 @media (max-width: 900px) { .calgrid { grid-template-columns:1fr; gap:20px; } }

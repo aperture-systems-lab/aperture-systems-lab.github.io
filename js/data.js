@@ -204,7 +204,7 @@ window.APERTURE_DATA = {
     "title": "CALENDARIO 2026-2",
     "text": "Las reuniones del semillero, semana a semana.",
     "start": "2026-09-07",
-    "end": "2026-11-23",
+    "end": "2026-11-26",
     "meetingWeekday": 0,
     "meetingTitle": "Reunión del semillero",
     "meetingPlace": "Facultad de Minas",
@@ -214,55 +214,78 @@ window.APERTURE_DATA = {
         "title": "Cuando la IA se convierte en el motor de transformación de una empresa",
         "speaker": "Juan Carlos González",
         "text": "Qué cambia dentro de una organización cuando la IA deja de ser un experimento y pasa a mover el negocio.",
-        "flyer": "assets/afiches/2026-09-07.webp",
+        "flyer": "assets/flyers/2026-09-07.webp",
         "time": "",
         "place": "",
-        "link": ""
+        "link": "",
+        "accent": "",
+        "tag": ""
       },
       "2026-09-14": {
         "title": "¿Cómo funcionan las redes neuronales?",
         "speaker": "Jerónimo Hoyos",
         "text": "Qué hay debajo de una red neuronal. De la neurona artificial al entrenamiento que la hace aprender.",
-        "flyer": "assets/afiches/2026-09-14.webp",
+        "flyer": "assets/flyers/2026-09-14.webp",
         "time": "",
         "place": "",
-        "link": ""
+        "link": "",
+        "accent": "",
+        "tag": ""
       },
       "2026-09-18": {
         "title": "Introducción a Git y GitHub",
         "speaker": "Jerónimo Hoyos",
         "text": "Control de versiones desde cero. Cómo guardar la historia de tu código, volver atrás cuando algo se rompe y trabajar con otros sin pisarse el trabajo.",
-        "flyer": "assets/afiches/2026-09-18.webp",
+        "flyer": "assets/flyers/2026-09-18.webp",
         "time": "6:00 p. m.",
         "place": "Reunión virtual",
-        "link": "https://meet.google.com/hui-pkwe-boi"
+        "link": "https://meet.google.com/hui-pkwe-boi",
+        "accent": "",
+        "tag": ""
       },
       "2026-09-21": {
         "title": "Introducción a la Regresión",
         "speaker": "Valentina Muñoz",
         "text": "El modelo con el que todo empieza. Cómo trazar la relación entre variables y usarla para predecir.",
-        "flyer": "",
+        "flyer": "assets/flyers/2026-09-21.webp",
         "time": "",
         "place": "",
-        "link": ""
+        "link": "",
+        "accent": "",
+        "tag": ""
       },
       "2026-09-28": {
         "title": "Visión Artificial",
         "speaker": "Nicolás Mesa Ortega",
         "text": "Cómo una máquina aprende a ver. De los píxeles crudos al modelo que reconoce lo que hay dentro de una imagen.",
-        "flyer": "",
+        "flyer": "assets/flyers/2026-09-28.webp",
         "time": "",
         "place": "",
-        "link": ""
+        "link": "",
+        "accent": "",
+        "tag": ""
+      },
+      "2026-09-25": {
+        "title": "¿Cómo hacer redes neuronales en Python?",
+        "speaker": "Jerónimo Hoyos",
+        "text": "De la teoría al código. Construir y entrenar una red neuronal en Python con PyTorch.",
+        "flyer": "assets/flyers/2026-09-25.webp",
+        "time": "6:00 p. m.",
+        "place": "Reunión virtual",
+        "link": "",
+        "accent": "",
+        "tag": ""
       },
       "2026-10-05": {
         "title": "Introducción a los sistemas RAG",
         "speaker": "Esteban López Aguirre",
         "text": "Cómo darle a un modelo de lenguaje una fuente de verdad. Recuperar, dar contexto y responder sin inventar.",
-        "flyer": "",
+        "flyer": "assets/flyers/2026-10-05.webp",
         "time": "",
         "place": "",
-        "link": ""
+        "link": "",
+        "accent": "",
+        "tag": ""
       },
       "2026-10-19": {
         "title": "Detectives de bases de datos: una muy breve introducción a SQL",
@@ -271,7 +294,9 @@ window.APERTURE_DATA = {
         "flyer": "",
         "time": "",
         "place": "",
-        "link": ""
+        "link": "",
+        "accent": "",
+        "tag": ""
       },
       "2026-10-26": {
         "title": "Topología aplicada al análisis de datos",
@@ -280,7 +305,9 @@ window.APERTURE_DATA = {
         "flyer": "",
         "time": "",
         "place": "",
-        "link": ""
+        "link": "",
+        "accent": "",
+        "tag": ""
       },
       "2026-11-09": {
         "title": "Monte Carlo, de la bomba atómica a las finanzas cuantitativas",
@@ -289,7 +316,9 @@ window.APERTURE_DATA = {
         "flyer": "",
         "time": "",
         "place": "",
-        "link": ""
+        "link": "",
+        "accent": "",
+        "tag": ""
       },
       "2026-11-23": {
         "title": "Muestra de proyectos",
@@ -298,7 +327,97 @@ window.APERTURE_DATA = {
         "flyer": "",
         "time": "",
         "place": "",
-        "link": ""
+        "link": "",
+        "accent": "",
+        "tag": ""
+      },
+      "2026-10-08": {
+        "title": "Sesión 1: Fundamentos cuantitativos e hipótesis de mercado",
+        "speaker": "",
+        "text": "Retornos, riesgo, inferencia y regresión. Cómo convertir una idea sobre el mercado en una hipótesis que los datos puedan rechazar.",
+        "flyer": "",
+        "time": "",
+        "place": "",
+        "link": "",
+        "accent": "#c79bff",
+        "tag": "SEMINARIO DE FINANZAS CUANTITATIVAS"
+      },
+      "2026-10-15": {
+        "title": "Sesión 2: Portafolios, riesgo y factores",
+        "speaker": "",
+        "text": "Diversificación, frontera eficiente, beta y prima de riesgo. Por qué combinar activos cambia el riesgo que se corre.",
+        "flyer": "",
+        "time": "",
+        "place": "",
+        "link": "",
+        "accent": "#c79bff",
+        "tag": "SEMINARIO DE FINANZAS CUANTITATIVAS"
+      },
+      "2026-10-22": {
+        "title": "Sesión 3: Asset pricing y estrategias factoriales",
+        "speaker": "",
+        "text": "Alpha, factores y portfolio sorts. Separar lo que una estrategia gana de verdad de lo que solo es exposición a factores conocidos.",
+        "flyer": "",
+        "time": "",
+        "place": "",
+        "link": "",
+        "accent": "#c79bff",
+        "tag": "SEMINARIO DE FINANZAS CUANTITATIVAS"
+      },
+      "2026-10-29": {
+        "title": "Sesión 4: Diseño empírico, validación y robustez",
+        "speaker": "",
+        "text": "Fuera de muestra, robustez y sobreajuste. Cómo saber si un backtest encontró algo o solo se aprendió el pasado.",
+        "flyer": "",
+        "time": "",
+        "place": "",
+        "link": "",
+        "accent": "#c79bff",
+        "tag": "SEMINARIO DE FINANZAS CUANTITATIVAS"
+      },
+      "2026-11-05": {
+        "title": "Sesión 5: Implementación, fricciones y desempeño neto",
+        "speaker": "",
+        "text": "Turnover, costos y liquidez. Lo que queda de una señal cuando se paga por operarla.",
+        "flyer": "",
+        "time": "",
+        "place": "",
+        "link": "",
+        "accent": "#c79bff",
+        "tag": "SEMINARIO DE FINANZAS CUANTITATIVAS"
+      },
+      "2026-11-12": {
+        "title": "Sesión 6: Asset pricing condicional",
+        "speaker": "",
+        "text": "Variables de estado e interacciones. Cuándo una señal funciona según el momento en que está el mercado.",
+        "flyer": "",
+        "time": "",
+        "place": "",
+        "link": "",
+        "accent": "#c79bff",
+        "tag": "SEMINARIO DE FINANZAS CUANTITATIVAS"
+      },
+      "2026-11-19": {
+        "title": "Sesión 7: Regímenes de mercado y métodos modernos",
+        "speaker": "",
+        "text": "Markov switching, estados latentes y comparación con machine learning. Modelar un mercado que cambia de comportamiento.",
+        "flyer": "",
+        "time": "",
+        "place": "",
+        "link": "",
+        "accent": "#c79bff",
+        "tag": "SEMINARIO DE FINANZAS CUANTITATIVAS"
+      },
+      "2026-11-26": {
+        "title": "Sesión 8: Capstone: investigación cuantitativa aplicada",
+        "speaker": "",
+        "text": "Integración y presentación. Cada participante presenta una investigación completa: hipótesis, método, evidencia y límites.",
+        "flyer": "",
+        "time": "",
+        "place": "",
+        "link": "",
+        "accent": "#c79bff",
+        "tag": "SEMINARIO DE FINANZAS CUANTITATIVAS"
       }
     },
     "holidays": {

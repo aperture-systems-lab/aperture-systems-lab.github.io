@@ -80,6 +80,8 @@
         text: info && info.text ? info.text : '',
         flyer: info && info.flyer ? info.flyer : '',
         link: info && info.link ? info.link : '',
+        accent: info && info.accent ? info.accent : '',
+        tag: info && info.tag ? info.tag : '',
         time: info && info.time ? info.time : (cal.meetingTime || ''),
         place: info && info.place ? info.place : (cal.meetingPlace || ''),
         aparte: !habitual,
@@ -89,7 +91,28 @@
     return out;
   })();
 
-  function colorMeet(r) { return r.aparte ? '#29c5d6' : '#4fd6a0'; }
+  function colorMeet(r) { return r.accent || (r.aparte ? '#29c5d6' : '#4fd6a0'); }
+  function fondoMeet(r) { return r.accent ? '#140f20' : (r.aparte ? '#06202a' : '#082019'); }
+
+  // Hora en que termina una reunión, a partir de textos como "4:00 – 6:00 p. m."
+  // o "6:00 p. m.". Con una sola hora se asume que dura dos horas; sin hora,
+  // que dura todo el día.
+  function finReunion(r) {
+    var fin = new Date(r.date);
+    var horas = (r.time || '').match(/\d{1,2}:\d{2}/g);
+    if (!horas) { fin.setHours(23, 59, 59); return fin; }
+    var pm = /p\.?\s*m/i.test(r.time);
+    var hm = horas[horas.length - 1].split(':');
+    var h = parseInt(hm[0], 10) % 12 + (pm ? 12 : 0);
+    fin.setHours(h + (horas.length === 1 ? 2 : 0), parseInt(hm[1], 10), 0);
+    return fin;
+  }
+
+  var PROXIMA = (function () {
+    var ahora = new Date();
+    var r = meetings.filter(function (m) { return finReunion(m) > ahora; })[0];
+    return r ? r.iso : '';
+  })();
 
   var meetIdx = (function () {
     var m = {};
@@ -115,7 +138,7 @@
 
     var fg = '#7fa2ac', bg = 'transparent', bd = '1px solid transparent', extra = '';
     if (esReunion) {
-      fg = cReu; bg = meetings[mi].aparte ? '#06202a' : '#082019'; bd = '2px solid ' + cReu;
+      fg = cReu; bg = fondoMeet(meetings[mi]); bd = '2px solid ' + cReu;
       extra = 'box-shadow:0 0 10px ' + glowFor(cReu) + '; font-weight:700;';
     }
     if (hito) {
@@ -123,6 +146,8 @@
       extra = 'box-shadow:0 0 12px ' + glowFor(hito.accent) + '; font-weight:700;';
     }
     if (hoy) extra += ' outline:2px dashed #29c5d6; outline-offset:2px;';
+    var esProx = esReunion && iso === PROXIMA;
+    if (esProx) extra += ' --glow:' + glowFor(cReu) + ';';
 
     var style = 'position:relative; display:grid; place-items:center; height:' + CELDA + 'px; margin:0; padding:0; ' +
       'font-family:\'JetBrains Mono\',monospace; font-size:15px; color:' + fg + '; background:' + bg +
@@ -133,8 +158,11 @@
       : '';
 
     if (esReunion) {
-      return '<button class="calcell calday" data-meet="' + mi + '" title="' + esc(meetings[mi].title) + ' · ' + esc(fechaLarga(d)) + '" ' +
-        'style="cursor:pointer; transition:transform .1s, box-shadow .1s; ' + style + '">' + d.getDate() + punto + '</button>';
+      var marca = esProx
+        ? '<i style="position:absolute; top:-9px; left:50%; transform:translateX(-50%); font-style:normal; font-size:9px; font-weight:700; letter-spacing:0.5px; line-height:1; color:#050a0e; background:' + cReu + '; padding:2px 4px; white-space:nowrap;">PRÓXIMA</i>'
+        : '';
+      return '<button class="calcell calday' + (esProx ? ' calprox' : '') + '" data-meet="' + mi + '" title="' + (esProx ? 'Próxima charla · ' : '') + esc(meetings[mi].title) + ' · ' + esc(fechaLarga(d)) + '" ' +
+        'style="cursor:pointer; transition:transform .1s, box-shadow .1s; ' + style + '">' + d.getDate() + punto + marca + '</button>';
     }
 
     return '<span class="calcell"' + (hito ? ' title="' + esc(hito.label) + '"' : '') +
@@ -224,13 +252,18 @@
 
   function filaReunion(r, i) {
     var color = r.planned ? colorMeet(r) : '#5c7a86';
-    var fondo = r.planned ? (r.aparte ? '#06202a' : '#082019') : 'transparent';
+    var fondo = r.planned ? fondoMeet(r) : 'transparent';
+    var esProx = r.iso === PROXIMA;
+    var marco = esProx
+      ? 'background:' + fondo + '; border:none; border-left:4px solid ' + color + '; box-shadow:0 0 14px ' + glowFor(color) + '; padding:8px 10px 9px; margin:2px 0; '
+      : 'background:transparent; border:none; padding:2px 0; margin:-2px 0; ';
     return '' +
-    '<button class="filareu" data-meet="' + i + '" title="' + esc(fechaLarga(r.date)) + '" ' +
-      'style="cursor:pointer; text-align:left; width:100%; background:transparent; border:none; padding:2px 0; margin:-2px 0; ' +
+    '<button class="filareu' + (esProx ? ' proxima' : '') + '" data-meet="' + i + '" title="' + esc(fechaLarga(r.date)) + '" ' +
+      'style="cursor:pointer; text-align:left; width:100%; ' + marco +
       'display:flex; align-items:flex-start; gap:8px; font-family:\'JetBrains Mono\',monospace; font-size:13px; line-height:1.35; color:#9fc4cd; transition:transform .1s, color .1s;">' +
       '<span style="flex:none; width:17px; height:17px; display:grid; place-items:center; font-size:9px; color:' + color + '; border:2px solid ' + color + '; background:' + fondo + ';">&#9679;</span>' +
-      '<span style="min-width:0;">' +
+      '<span style="min-width:0;' + (esProx ? ' color:#fff;' : '') + '">' +
+        (esProx ? '<span style="display:block; font-size:11px; font-weight:700; letter-spacing:0.8px; color:' + color + '; margin-bottom:3px;">&#9656; PRÓXIMA CHARLA</span>' : '') +
         '<b style="color:' + color + ';">' + esc(fechaCorta(r.date)) + '</b> · ' +
         esc(r.planned ? r.title : 'sin programar') +
       '</span>' +
@@ -266,8 +299,15 @@
       '<div class="calgrid">' +
         '<div id="calMes"></div>' +
         '<aside style="display:flex; flex-direction:column; gap:18px;">' +
-          '<div style="display:flex; flex-direction:column; gap:11px;">' +
-            meetings.map(filaReunion).join('') + hitos +
+          '<div style="display:flex; flex-direction:column; gap:6px;">' +
+            '<div style="display:flex; justify-content:space-between; font-family:\'JetBrains Mono\',monospace; font-size:11px; letter-spacing:0.6px; text-transform:uppercase; color:#5c7a86;">' +
+              '<span>agenda del semestre</span><span>' + meetings.length + ' sesiones &#8597;</span>' +
+            '</div>' +
+            '<div id="listaWrap" class="listawrap">' +
+              '<div id="listaReu" class="listareu" style="position:relative; display:flex; flex-direction:column; gap:11px; max-height:340px; overflow-y:auto; padding:6px 10px 6px 4px;">' +
+                meetings.map(filaReunion).join('') + hitos +
+              '</div>' +
+            '</div>' +
           '</div>' +
           bloqueHorario() +
         '</aside>' +
@@ -275,6 +315,19 @@
     '</div>';
 
     pintarMes();
+    var lista = $('listaReu'), wrap = $('listaWrap');
+    function bordes() {
+      wrap.classList.toggle('arriba', lista.scrollTop > 4);
+      wrap.classList.toggle('abajo', lista.scrollTop + lista.clientHeight < lista.scrollHeight - 4);
+    }
+    function irAProxima() {
+      var fila = lista.querySelector('.proxima');
+      if (fila) lista.scrollTop = fila.offsetTop - 30;
+      bordes();
+    }
+    lista.addEventListener('scroll', bordes);
+    requestAnimationFrame(irAProxima);
+    window.addEventListener('load', irAProxima);
     Array.prototype.forEach.call(mount.querySelectorAll('.filareu'), function (b) {
       b.addEventListener('click', function () { openMeeting(parseInt(b.getAttribute('data-meet'), 10)); });
     });
@@ -548,7 +601,7 @@
       'display:flex; align-items:center; justify-content:center; padding:26px 16px; overflow:auto; cursor:zoom-out;';
     capa.innerHTML = '' +
       '<button id="zoomClose" aria-label="cerrar" style="position:fixed; top:16px; right:16px; z-index:1; cursor:pointer; background:#0a1622; border:2px solid ' + color + '; color:' + color + '; font-family:\'JetBrains Mono\',monospace; font-weight:700; font-size:13px; padding:5px 11px;">[ x ]</button>' +
-      '<img id="zoomImg" src="' + esc(src) + '" alt="Afiche de la charla: ' + esc(titulo) + '" ' +
+      '<img id="zoomImg" src="' + esc(src) + '" alt="Flyer de la charla: ' + esc(titulo) + '" ' +
         'style="display:block; max-width:min(100%,780px); max-height:90vh; width:auto; margin:auto; ' +
         'border:3px solid ' + color + '; box-shadow:0 0 42px ' + glowFor(color) + '; cursor:zoom-in;" />';
     document.body.appendChild(capa);
@@ -588,7 +641,7 @@
 
     var cuerpo = '' +
       '<div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:16px;">' +
-        '<span style="font-family:\'JetBrains Mono\',monospace; font-size:12px; font-weight:700; color:#050a0e; background:' + color + '; padding:3px 9px;">' + (r.aparte ? 'SESIÓN EXTRA' : 'REUNIÓN') + '</span>' +
+        '<span style="font-family:\'JetBrains Mono\',monospace; font-size:12px; font-weight:700; color:#050a0e; background:' + color + '; padding:3px 9px;">' + esc(r.tag || (r.aparte ? 'SESIÓN EXTRA' : 'REUNIÓN')) + '</span>' +
         '<span style="font-family:\'JetBrains Mono\',monospace; font-size:12px; color:' + color + '; border:1px solid ' + color + '; padding:2px 8px;">' + esc(r.iso) + '</span>' +
         (r.link ? '<span style="font-family:\'JetBrains Mono\',monospace; font-size:12px; font-weight:700; color:#050a0e; background:#cfe8ec; padding:3px 9px;">VIRTUAL</span>' : '') +
       '</div>' +
@@ -611,20 +664,20 @@
         '</div>') +
       (r.text ? '<p style="font-size:22px; line-height:1.45; color:#cfe8ec; margin:0; font-family:\'VT323\',monospace;">' + esc(r.text) + '</p>' : '') +
       (r.flyer
-        ? '<button class="afiche" type="button" style="--glow:' + glowFor(color) + '; display:block; width:100%; text-align:left; font:inherit; cursor:zoom-in; background:#070f18; border:2px solid #173241; border-top:4px solid ' + color + '; box-shadow:6px 6px 0 rgba(0,0,0,0.5); padding:12px; margin-top:20px; transition:transform .1s, box-shadow .1s;">' +
+        ? '<button class="flyer" type="button" style="--glow:' + glowFor(color) + '; display:block; width:100%; text-align:left; font:inherit; cursor:zoom-in; background:#070f18; border:2px solid #173241; border-top:4px solid ' + color + '; box-shadow:6px 6px 0 rgba(0,0,0,0.5); padding:12px; margin-top:20px; transition:transform .1s, box-shadow .1s;">' +
             '<span style="display:flex; align-items:center; justify-content:space-between; gap:10px; font-family:\'JetBrains Mono\',monospace; font-size:11px; letter-spacing:0.6px; text-transform:uppercase; color:#5c7a86; margin-bottom:10px;">' +
-              '<span>afiche de la charla</span>' +
+              '<span>flyer de la charla</span>' +
               '<span style="color:' + color + ';">[ ampliar ]</span>' +
             '</span>' +
-            '<img src="' + esc(r.flyer) + '" alt="Afiche de la charla: ' + esc(r.title) + '" loading="lazy" style="display:block; width:100%; max-width:390px; margin:0 auto; border:2px solid #173241;" />' +
+            '<img src="' + esc(r.flyer) + '" alt="Flyer de la charla: ' + esc(r.title) + '" loading="lazy" style="display:block; width:100%; max-width:390px; margin:0 auto; border:2px solid #173241;" />' +
           '</button>'
         : '');
 
     openOverlay(color, 'aperture@lab:~$ cat ./reuniones/' + r.iso + '.md', '640px', cuerpo);
 
-    var afiche = $('modalMount').querySelector('.afiche');
-    if (afiche) {
-      afiche.addEventListener('click', function () { openZoom(r.flyer, r.title, color); });
+    var flyer = $('modalMount').querySelector('.flyer');
+    if (flyer) {
+      flyer.addEventListener('click', function () { openZoom(r.flyer, r.title, color); });
     }
   }
 
@@ -689,7 +742,7 @@
           '<div style="width:100%; max-width:720px; margin:0 auto; animation:bootJitter 0.18s steps(2) infinite;">' +
             '<div style="display:flex; align-items:center; gap:14px; margin-bottom:26px; border-bottom:2px solid #173a44; padding-bottom:14px;">' +
               '<img src="assets/aperture-eye-cyan.png" alt="" style="width:42px; height:42px; object-fit:contain; animation:irisPulse 2.4s ease-in-out infinite;" />' +
-              '<div style="font-size:clamp(15px,2.4vw,21px); letter-spacing:1px; color:#cfe8ec;">APERTURE // CALIBRANDO LENTE</div>' +
+              '<div style="font-size:clamp(15px,2.4vw,21px); letter-spacing:1px; color:#cfe8ec;">APERTURE // INICIANDO SISTEMA</div>' +
             '</div>' +
             rows +
             '<div style="margin-top:8px; font-size:clamp(14px,2.2vw,20px);"><span style="display:inline-block; width:11px; height:18px; background:#29c5d6; animation:blink 1s steps(1) infinite; vertical-align:-2px;"></span></div>' +
