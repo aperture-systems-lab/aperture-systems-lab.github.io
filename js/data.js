@@ -204,7 +204,7 @@ window.APERTURE_DATA = {
     "title": "CALENDARIO 2026-2",
     "text": "Las reuniones del semillero, semana a semana.",
     "start": "2026-09-07",
-    "end": "2026-11-26",
+    "end": "2026-11-23",
     "meetingWeekday": 0,
     "meetingTitle": "Reunión del semillero",
     "meetingPlace": "Facultad de Minas",
@@ -341,94 +341,6 @@ window.APERTURE_DATA = {
         "link": "",
         "accent": "",
         "tag": ""
-      },
-      "2026-10-08": {
-        "title": "Sesión 1: Fundamentos cuantitativos e hipótesis de mercado",
-        "speaker": "Julián Alexander Muñoz Lozada",
-        "text": "Retornos, riesgo, inferencia y regresión. Cómo convertir una idea sobre el mercado en una hipótesis que los datos puedan rechazar.",
-        "flyer": "",
-        "time": "10:00 a. m. – 12:00 m.",
-        "place": "M6-118",
-        "link": "",
-        "accent": "#c79bff",
-        "tag": "SEMINARIO DE FINANZAS CUANTITATIVAS"
-      },
-      "2026-10-15": {
-        "title": "Sesión 2: Portafolios, riesgo y factores",
-        "speaker": "Julián Alexander Muñoz Lozada",
-        "text": "Diversificación, frontera eficiente, beta y prima de riesgo. Por qué combinar activos cambia el riesgo que se corre.",
-        "flyer": "",
-        "time": "10:00 a. m. – 12:00 m.",
-        "place": "M6-118",
-        "link": "",
-        "accent": "#c79bff",
-        "tag": "SEMINARIO DE FINANZAS CUANTITATIVAS"
-      },
-      "2026-10-22": {
-        "title": "Sesión 3: Asset pricing y estrategias factoriales",
-        "speaker": "Julián Alexander Muñoz Lozada",
-        "text": "Alpha, factores y portfolio sorts. Separar lo que una estrategia gana de verdad de lo que solo es exposición a factores conocidos.",
-        "flyer": "",
-        "time": "10:00 a. m. – 12:00 m.",
-        "place": "M6-118",
-        "link": "",
-        "accent": "#c79bff",
-        "tag": "SEMINARIO DE FINANZAS CUANTITATIVAS"
-      },
-      "2026-10-29": {
-        "title": "Sesión 4: Diseño empírico, validación y robustez",
-        "speaker": "Julián Alexander Muñoz Lozada",
-        "text": "Fuera de muestra, robustez y sobreajuste. Cómo saber si un backtest encontró algo o solo se aprendió el pasado.",
-        "flyer": "",
-        "time": "10:00 a. m. – 12:00 m.",
-        "place": "M6-118",
-        "link": "",
-        "accent": "#c79bff",
-        "tag": "SEMINARIO DE FINANZAS CUANTITATIVAS"
-      },
-      "2026-11-05": {
-        "title": "Sesión 5: Implementación, fricciones y desempeño neto",
-        "speaker": "Julián Alexander Muñoz Lozada",
-        "text": "Turnover, costos y liquidez. Lo que queda de una señal cuando se paga por operarla.",
-        "flyer": "",
-        "time": "10:00 a. m. – 12:00 m.",
-        "place": "M6-118",
-        "link": "",
-        "accent": "#c79bff",
-        "tag": "SEMINARIO DE FINANZAS CUANTITATIVAS"
-      },
-      "2026-11-12": {
-        "title": "Sesión 6: Asset pricing condicional",
-        "speaker": "Julián Alexander Muñoz Lozada",
-        "text": "Variables de estado e interacciones. Cuándo una señal funciona según el momento en que está el mercado.",
-        "flyer": "",
-        "time": "10:00 a. m. – 12:00 m.",
-        "place": "M6-118",
-        "link": "",
-        "accent": "#c79bff",
-        "tag": "SEMINARIO DE FINANZAS CUANTITATIVAS"
-      },
-      "2026-11-19": {
-        "title": "Sesión 7: Regímenes de mercado y métodos modernos",
-        "speaker": "Julián Alexander Muñoz Lozada",
-        "text": "Markov switching, estados latentes y comparación con machine learning. Modelar un mercado que cambia de comportamiento.",
-        "flyer": "",
-        "time": "10:00 a. m. – 12:00 m.",
-        "place": "M6-118",
-        "link": "",
-        "accent": "#c79bff",
-        "tag": "SEMINARIO DE FINANZAS CUANTITATIVAS"
-      },
-      "2026-11-26": {
-        "title": "Sesión 8: Capstone: investigación cuantitativa aplicada",
-        "speaker": "Julián Alexander Muñoz Lozada",
-        "text": "Integración y presentación. Cada participante presenta una investigación completa: hipótesis, método, evidencia y límites.",
-        "flyer": "",
-        "time": "10:00 a. m. – 12:00 m.",
-        "place": "M6-118",
-        "link": "",
-        "accent": "#c79bff",
-        "tag": "SEMINARIO DE FINANZAS CUANTITATIVAS"
       }
     },
     "holidays": {

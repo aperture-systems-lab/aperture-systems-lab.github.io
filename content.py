@@ -164,7 +164,7 @@ CALENDARIO_TITULO = "CALENDARIO 2026-2"
 CALENDARIO_TEXTO  = "Las reuniones del semillero, semana a semana."
 
 REUNION_INICIO = "2026-09-07"
-REUNION_FIN    = "2026-11-26"
+REUNION_FIN    = "2026-11-23"
 REUNION_DIA    = 0
 REUNION_TITULO = "Reunión del semillero"
 REUNION_LUGAR  = "Facultad de Minas"
@@ -235,43 +235,6 @@ DETALLES = {
     "2026-11-18": {"hora":  "2:00 – 3:00 p. m.",
                    "lugar": "Salón por confirmar"},
 }
-
-# Seminario de finanzas cuantitativas: una sesión por semana, los jueves.
-# fecha: (título, de qué va)
-SEMINARIO_FINANZAS = {
-    "2026-10-08": ("Sesión 1: Fundamentos cuantitativos e hipótesis de mercado",
-                   "Retornos, riesgo, inferencia y regresión. Cómo convertir una idea "
-                   "sobre el mercado en una hipótesis que los datos puedan rechazar."),
-    "2026-10-15": ("Sesión 2: Portafolios, riesgo y factores",
-                   "Diversificación, frontera eficiente, beta y prima de riesgo. Por qué "
-                   "combinar activos cambia el riesgo que se corre."),
-    "2026-10-22": ("Sesión 3: Asset pricing y estrategias factoriales",
-                   "Alpha, factores y portfolio sorts. Separar lo que una estrategia gana "
-                   "de verdad de lo que solo es exposición a factores conocidos."),
-    "2026-10-29": ("Sesión 4: Diseño empírico, validación y robustez",
-                   "Fuera de muestra, robustez y sobreajuste. Cómo saber si un backtest "
-                   "encontró algo o solo se aprendió el pasado."),
-    "2026-11-05": ("Sesión 5: Implementación, fricciones y desempeño neto",
-                   "Turnover, costos y liquidez. Lo que queda de una señal cuando se "
-                   "paga por operarla."),
-    "2026-11-12": ("Sesión 6: Asset pricing condicional",
-                   "Variables de estado e interacciones. Cuándo una señal funciona "
-                   "según el momento en que está el mercado."),
-    "2026-11-19": ("Sesión 7: Regímenes de mercado y métodos modernos",
-                   "Markov switching, estados latentes y comparación con machine "
-                   "learning. Modelar un mercado que cambia de comportamiento."),
-    "2026-11-26": ("Sesión 8: Capstone: investigación cuantitativa aplicada",
-                   "Integración y presentación. Cada participante presenta una "
-                   "investigación completa: hipótesis, método, evidencia y límites."),
-}
-
-for _fecha, (_titulo, _texto) in SEMINARIO_FINANZAS.items():
-    REUNIONES[_fecha] = (_titulo, "Julián Alexander Muñoz Lozada", _texto)
-    DETALLES.setdefault(_fecha, {}).update(
-        {"color":    "morado",
-         "etiqueta": "SEMINARIO DE FINANZAS CUANTITATIVAS",
-         "hora":     "10:00 a. m. – 12:00 m.",
-         "lugar":    "M6-118"})
 
 FESTIVOS = {
     "2026-10-12": "Día de la Raza",
